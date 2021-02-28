@@ -12,7 +12,7 @@ namespace Courses.Unit.Tests.Mapper
             var configuration = new MapperConfiguration(cfg =>
             {
                 // Add all Profiles from the Assembly containing this Type
-                cfg.AddMaps(typeof(CountryProfile));
+                cfg.AddMaps(typeof(CategoryProfile));
             });
 
             configuration.AssertConfigurationIsValid();

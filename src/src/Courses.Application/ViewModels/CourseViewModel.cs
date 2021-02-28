@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Courses.Domain.Models.Course
+namespace Courses.Application.ViewModels
 {
-    public class Course
+    public class CourseViewModel
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
@@ -11,6 +11,5 @@ namespace Courses.Domain.Models.Course
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int? StudentsPerClass { get; set; }
-        public Category.Category Category { get; set; }
     }
 }

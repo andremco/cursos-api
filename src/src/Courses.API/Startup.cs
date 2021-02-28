@@ -128,7 +128,7 @@ namespace Courses.API
 
         private void RegisterServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(CountryProfile));
+            services.AddAutoMapper(typeof(CategoryProfile));
 
             #region Service
             services.AddScoped<ICategoryService, CategoryService>();

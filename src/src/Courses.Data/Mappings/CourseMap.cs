@@ -12,6 +12,10 @@ namespace Courses.Data.Mappings
 
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.CategoryId)
+                .HasColumnType("INT")
+                .IsRequired();
+
             builder.Property(x => x.Name)
                 .HasColumnType("VARCHAR(100)")
                 .HasMaxLength(100)
