@@ -22,3 +22,9 @@ stages:
         arguments: './BuildNetApi.ps1; CIBuildNetApi'
       timeoutInMinutes: 10
       continueOnError: false
+    - task: PublishTestResults@2
+      displayName: Publish Test Result Net Api $(ProjectName) $(Version)
+      inputs:
+        testResultsFormat: VSTest
+        testResultsFiles: '**/*.trx'
+        failTaskOnFailedTests: true      

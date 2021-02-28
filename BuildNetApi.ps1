@@ -50,18 +50,9 @@ Function IntegrationTestNet{
 	}
 }
 
-Function PublishNet{
-	$csProjWebApi = "$apiDir/src/$projectName"".Api""/$projectName"".Api"".csproj"
-	# Publish Net Core Api
-	exec {
-		& dotnet publish "./$csProjWebApi" -c $projectConfig --no-restore --no-build -o "./$apiDir/src/$projectName"".Api""/publish/"
-	}
-}
-
 Function CIBuildNetApi{
 	InitNet
 	CompileNet
 	UnitTestsNet
 	IntegrationTestNet
-	PublishNet
 }
