@@ -3,6 +3,8 @@ using Courses.Application.Services.Interfaces;
 using Courses.Application.ViewModels;
 using Courses.Domain.Interfaces.Repositories;
 using Courses.Domain.Interfaces.UoW;
+using Courses.Domain.Models.Category;
+using Courses.Domain.Validation;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

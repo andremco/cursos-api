@@ -7,19 +7,19 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["src/CustomCountries.API/CustomCountries.API.csproj", "src/CustomCountries.API/"]
-COPY ["src/CustomCountries.Application/CustomCountries.Application.csproj", "src/CustomCountries.Application/"]
-COPY ["src/CustomCountries.Domain/CustomCountries.Domain.csproj", "src/CustomCountries.Domain/"]
-COPY ["src/CustomCountries.Data/CustomCountries.Data.csproj", "src/CustomCountries.Data/"]
-RUN dotnet restore "src/CustomCountries.API/CustomCountries.API.csproj"
+COPY ["src/Courses.API/Courses.API.csproj", "src/Courses.API/"]
+COPY ["src/Courses.Application/Courses.Application.csproj", "src/Courses.Application/"]
+COPY ["src/Courses.Domain/Courses.Domain.csproj", "src/Courses.Domain/"]
+COPY ["src/Courses.Data/Courses.Data.csproj", "src/Courses.Data/"]
+RUN dotnet restore "src/Courses.API/Courses.API.csproj"
 COPY . .
-WORKDIR "/src/src/CustomCountries.API"
-RUN dotnet build "CustomCountries.API.csproj" -c Release -o /app/build
+WORKDIR "/src/src/Courses.API"
+RUN dotnet build "Courses.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "CustomCountries.API.csproj" -c Release -o /app/publish
+RUN dotnet publish "Courses.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CustomCountries.API.dll"]
+ENTRYPOINT ["dotnet", "Courses.API.dll"]

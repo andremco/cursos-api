@@ -132,6 +132,7 @@ namespace Courses.API
 
             #region Service
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICourseService, CourseService>();
             #endregion
 
             #region Domain
@@ -143,6 +144,7 @@ namespace Courses.API
             services.AddScoped<IDbConnection>(c => new SqlConnection(Environment.GetEnvironmentVariable("ConnectionStringSqlServer")));
             services.AddScoped<DapperContext>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             #endregion
         }

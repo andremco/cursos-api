@@ -3,10 +3,14 @@ using FluentValidation;
 
 namespace Courses.Domain.Validation
 {
-    public class RegisterCourseValidation : AbstractValidator<Course>
+    public class UpdateCourseValidation : AbstractValidator<Course>
     {
-        public RegisterCourseValidation()
+        public UpdateCourseValidation()
         {
+            RuleFor(x => x.Id)
+                .NotEmpty()
+                .WithMessage("Id nao pode ser vazia!");
+
             RuleFor(x => x.CategoryId)
                 .NotEmpty()
                 .WithMessage("CategoryId não pode ser vazia!");
