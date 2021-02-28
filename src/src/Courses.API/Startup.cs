@@ -4,17 +4,20 @@ using Courses.API.Middlewares;
 using Courses.Application.AutoMapper;
 using Courses.Application.Services;
 using Courses.Application.Services.Interfaces;
+using Courses.Data.Context;
 using Courses.Data.Repositories;
+using Courses.Data.UoW;
 using Courses.Domain.Interfaces.Notifications;
 using Courses.Domain.Interfaces.Repositories;
+using Courses.Domain.Interfaces.UoW;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -59,7 +62,7 @@ namespace Courses.API
                     c.SwaggerDoc("v1",
                         new OpenApiInfo
                         {
-                            Title = "Custom Countries API",
+                            Title = "API Cursos",
                             Version = "v1",
                             Description = "API",
                             Contact = new OpenApiContact
@@ -128,7 +131,7 @@ namespace Courses.API
             services.AddAutoMapper(typeof(CountryProfile));
 
             #region Service
-            services.AddScoped<IGithubService>(c => new GithubService(Environment.GetEnvironmentVariable("LinkGithub")));
+            services.AddScoped<ICategoryService, CategoryService>();
             #endregion
 
             #region Domain
@@ -136,7 +139,11 @@ namespace Courses.API
             #endregion
 
             #region Data
+            services.AddDbContext<EntityContext>(options => options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionStringSqlServer")));
             services.AddScoped<IDbConnection>(c => new SqlConnection(Environment.GetEnvironmentVariable("ConnectionStringSqlServer")));
+            services.AddScoped<DapperContext>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             #endregion
         }
 

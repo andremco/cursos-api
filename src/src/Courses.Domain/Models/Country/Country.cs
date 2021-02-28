@@ -1,11 +1,8 @@
-﻿using Courses.Domain.Attributes.Mongo;
-using Courses.Domain.Models.Mongo;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Courses.Domain.Models.Country
 {
-    [BsonCollection("countries")]
-    public class Country : Document
+    public class Country
     {
         public int CountryId { get; set; }
         public string Name { get; set; }

@@ -19,7 +19,7 @@ namespace Courses.Integration.Tests.Controllers
         [Fact]
         public async Task GetAll_HttpStatusCodeUnauthorizedTestAsync()
         {
-            var response = await _httpClient.GetAsync("/api/v1/countries");
+            var response = await _httpClient.GetAsync("api/v1/category");
 
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }

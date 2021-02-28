@@ -1,7 +1,9 @@
 ﻿using Courses.Data.Context;
 using Courses.Data.Repositories;
 using Courses.Data.UoW;
+using Courses.Domain.Models.Category;
 using Courses.Unit.Tests.Mock;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
@@ -27,11 +29,11 @@ namespace Courses.Unit.Tests.Repositories
         public void Crud_EntityTest()
         {
             var category = CategoryMock.CategoryModelFaker.Generate();
-
             var entityContext = new EntityContext(_entityOptions);
             var unitOfWork = new UnitOfWork(entityContext);
             var dapperContext = new DapperContext(_dbConnectionMock.Object);
             var categoryRepository = new CategoryRepository(entityContext, dapperContext);
+            var courseRepository = new CourseRepository(entityContext, dapperContext);
 
             categoryRepository.Add(category);
             var IsSaveCategory = unitOfWork.Commit();
