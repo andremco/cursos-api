@@ -472,3 +472,5 @@ typings/
 
 # docker-compose.override.yml
 docker-compose.override.yml
+
+**/Properties/
