@@ -57,31 +57,29 @@ namespace Courses.API
 
             if (!WebHostEnvironment.IsProduction())
             {
-            }
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1",
-                    new OpenApiInfo
-                    {
-                        Title = "API Cursos",
-                        Version = "v1",
-                        Description = "API",
-                        Contact = new OpenApiContact
-                        {
-                            Name = "Andr� Milit�o Costa Oliveira",
-                            Email = "andremco1992@gmail.com"
-                        }
-                    });
-                c.AddSecurityDefinition("Basic Auth", new OpenApiSecurityScheme()
+                services.AddSwaggerGen(c =>
                 {
-                    Type = SecuritySchemeType.Http,
-                    Name = "Authorization",
-                    Scheme = "basic",
-                    Description = "Authorization API",
-                    In = ParameterLocation.Header
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                    c.SwaggerDoc("v1",
+                        new OpenApiInfo
+                        {
+                            Title = "API Cursos",
+                            Version = "v1",
+                            Description = "API",
+                            Contact = new OpenApiContact
+                            {
+                                Name = "Andr� Milit�o Costa Oliveira",
+                                Email = "andremco1992@gmail.com"
+                            }
+                        });
+                    c.AddSecurityDefinition("Basic Auth", new OpenApiSecurityScheme()
+                    {
+                        Type = SecuritySchemeType.Http,
+                        Name = "Authorization",
+                        Scheme = "basic",
+                        Description = "Authorization API",
+                        In = ParameterLocation.Header
+                    });
+                    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
                     {
                         {
                             new OpenApiSecurityScheme
@@ -96,11 +94,12 @@ namespace Courses.API
                         }
                     });
 
-                // Set the comments path for the Swagger JSON and UI.
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-            });
+                    // Set the comments path for the Swagger JSON and UI.
+                    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                    c.IncludeXmlComments(xmlPath);
+                });
+            }
 
             services.AddCors(o => o.AddPolicy("PolicyAPI", builder =>
             {
@@ -155,14 +154,13 @@ namespace Courses.API
         {
             if (env.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Custom Countries API");
+                });
             }
-
-            app.UseDeveloperExceptionPage();
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Custom Countries API");
-            });
 
             app.UseHttpsRedirection();
 
