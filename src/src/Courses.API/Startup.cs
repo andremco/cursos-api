@@ -67,7 +67,7 @@ namespace Courses.API
                             Description = "API",
                             Contact = new OpenApiContact
                             {
-                                Name = "Andr� Milit�o Costa Oliveira",
+                                Name = "Andre Militao Costa Oliveira",
                                 Email = "andremco1992@gmail.com"
                             }
                         });
