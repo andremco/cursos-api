@@ -39,7 +39,7 @@ docker-compose up -d --build
 
 ## Basic Auth
 A Api está protegida por uma autenticação simples, o usuário prédefinido é admin - 123456, no swagger em Authorize tem dois campos para setar username -> admin, password -> 123456.
-Ou se preferir, para fazer requisições passar o seguinte cabeçalho - -H  "Authorization: Basic YWRtaW46MTIzNDU2"
+Ou se preferir, para fazer requisições passar o seguinte cabeçalho -H "Authorization: Basic YWRtaW46MTIzNDU2"
 
 ## Integração com DevOps
 Foi criado para este projeto, uma pipeline que roda cada commit na branch main, executando somente uma build automático.
