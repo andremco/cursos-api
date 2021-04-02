@@ -9,10 +9,6 @@ API Rest que expõe operações CRUD de cursos feita em .Net Core 3.1
 - Docker (opcional)
 - SDK .Net Core 3.1
  
-## Link da api no azure
-
-[Link API](https://coursesapi20210228202147.azurewebsites.net/swagger/)
-
 ## Scripts para realizar build local
 
 Foi criado alguns arquivos em powershell, para realizar o build de forma mais fácil
